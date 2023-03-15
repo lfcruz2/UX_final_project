@@ -1,0 +1,19 @@
+body {
+    background-color: #247792 !important;
+}
+
+h1 {
+    color: white !important;
+}
+
+form {
+    padding-top: 50px !important;
+}
+
+.container {
+    margin-top: 50px !important;
+}
+
+.btn-primary {
+    background-color: #21ADCC !important;    
+}
