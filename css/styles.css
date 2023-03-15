@@ -1,3 +1,4 @@
+
 body {
     background-color: #247792 !important;
 }
@@ -15,5 +16,29 @@ form {
 }
 
 .btn-primary {
-    background-color: #21ADCC !important;    
+    background-color: #21ADCC !important;
+    border-radius: 50px !important;   
+}
+
+.main-app{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1.titulo-principal{
+    padding-bottom: 2em;
+    text-align: center;
+}
+
+.input-espaciado{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+.botones-espaciados{
+    display: flex;
+    justify-content: space-between;
 }
