@@ -8,6 +8,11 @@ h1 , h2, h3 {
     text-align: center;
 }
 
+h4 {
+    color: white !important;
+    text-align: left;
+}
+
 
 form {
     padding-top: 50px !important;
@@ -85,3 +90,24 @@ label {
     padding: 1em;
 }
 
+.calendario{
+font-size: 2em;
+padding-left: 1em;
+color: white;
+}
+
+.boton-fecha{
+    justify-items: left;
+    padding-bottom: 1em;
+}
+
+.imagen{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginador_lista{
+    text-align: right;
+    color: white;
+}
