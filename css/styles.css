@@ -3,9 +3,11 @@ body {
     background-color: #247792 !important;
 }
 
-h1 {
+h1 , h2, h3 {
     color: white !important;
+    text-align: center;
 }
+
 
 form {
     padding-top: 50px !important;
@@ -27,7 +29,12 @@ form {
 }
 
 h1.titulo-principal{
-    padding-bottom: 2em;
+    padding-bottom: 1em;
+    text-align: center;
+}
+
+h3.titulo-secundario{
+    padding-bottom: 0.25em;
     text-align: center;
 }
 
@@ -46,3 +53,35 @@ h1.titulo-principal{
 label {
     color: white !important;
 }
+
+.boton-unico{
+    padding-top: 1em;
+}
+
+.btn-group-positivo{
+    background-color: #21ADCC !important;
+    color: white !important;
+    border-color: black !important; 
+
+}
+
+.btn-group-negativo{
+    color: #247792 !important;
+    color: white !important;
+    border-color: black !important; 
+}
+
+.featurette-divider{
+    color: white !important;
+    border-color: white;
+}
+
+.botones-gemelos{
+    padding-bottom: 1em;
+}
+
+
+.form-table{
+    padding: 1em;
+}
+
