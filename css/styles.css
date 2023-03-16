@@ -14,9 +14,9 @@ h4 {
 }
 
 
-form {
+/* form {
     padding-top: 50px !important;
-}
+} */
 
 .container {
     margin-top: 50px !important;
@@ -47,7 +47,7 @@ h3.titulo-secundario{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2em;
+    padding-bottom: 1em;
 }
 
 .botones-espaciados{
