@@ -119,6 +119,57 @@ makeRequest(function() {
 
 
 
+// Función que hace la primera petición GET
+function getRequest1() {
+  return pm.sendRequest({
+    url: 'https://api.example.com/request1',
+    method: 'GET',
+    header: headers
+  }).then((response) => {
+    return response.json();
+  }).catch((error) => {
+    console.error(error);
+    return null;
+  });
+}
+
+// Función que hace la segunda petición POST
+function postRequest2(data) {
+  return pm.sendRequest({
+    url: 'https://api.example.com/request2',
+    method: 'POST',
+    header: headers,
+    body: {
+      mode: 'raw',
+      raw: JSON.stringify(data)
+    }
+  }).then((response) => {
+    return response.json();
+  }).catch((error) => {
+    console.error(error);
+    return null;
+  });
+}
+
+// Función que hace la tercera petición POST
+function postRequest3(data) {
+  return pm.sendRequest({
+    url: 'https://api.example.com/request3',
+    method: 'POST',
+    header: headers,
+    body: {
+      mode: 'raw',
+      raw: JSON.stringify(data)
+    }
+  }).then((response) => {
+    return response.json();
+  }).catch((error) => {
+    console.error(error);
+    return null;
+  });
+}
+
+
 // Función principal que ejecuta las tres peticiones de manera asíncrona
 function executeRequests() {
   // Hacer la primera petición
