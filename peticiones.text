@@ -1,0 +1,118 @@
+// Función que hace la primera petición GET
+async function getRequest1() {
+  try {
+    const response = await pm.sendRequest({
+      url: 'https://api.example.com/request1',
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+// Función que hace la segunda petición POST
+async function postRequest2(data) {
+  try {
+    const response = await pm.sendRequest({
+      url: 'https://api.example.com/request2',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        mode: 'raw',
+        raw: JSON.stringify(data)
+      }
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+// Función que hace la tercera petición POST
+async function postRequest3(data) {
+  try {
+    const response = await pm.sendRequest({
+      url: 'https://api.example.com/request3',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        mode: 'raw',
+        raw: JSON.stringify(data)
+      }
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+// Función principal que ejecuta las tres peticiones de manera asíncrona
+async function executeRequests() {
+  // Hacer la primera petición
+  const response1 = await getRequest1();
+  
+  if (!response1) {
+    console.error('Error en la petición 1');
+    return;
+  }
+
+  // Hacer la segunda petición utilizando la respuesta de la primera
+  const response2 = await postRequest2(response1);
+
+  if (!response2) {
+    console.error('Error en la petición 2');
+    return;
+  }
+
+  // Hacer la tercera petición utilizando la respuesta de la segunda
+  const response3 = await postRequest3(response2);
+
+  if (!response3) {
+    console.error('Error en la petición 3');
+    return;
+  }
+
+  console.log(response3);
+}
+
+// Llamar a la función principal para ejecutar las peticiones
+executeRequests();
+
+function makeRequest(callback) {
+    // Hacer una solicitud GET a un endpoint
+    pm.sendRequest({
+        url: 'https://mi-api.com/mi-endpoint',
+        method: 'GET',
+        header: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + pm.environment.get('token')
+        }
+    }, function (err, response) {
+        // Comprobar si la respuesta de la API es la esperada
+        if (response && response.code === 200 && response.json().status === 'success') {
+            // Ejecutar la función de devolución de llamada si la respuesta es la esperada
+            callback();
+        } else {
+            // Esperar 8 segundos antes de hacer otra solicitud
+            setTimeout(function() {
+                makeRequest(callback);
+            }, 8000);
+        }
+    });
+}
+
+// Ejecutar la función de solicitud en intervalos regulares
+makeRequest(function() {
+    console.log('La API ha respondido correctamente');
+});
