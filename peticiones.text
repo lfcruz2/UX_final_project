@@ -115,25 +115,20 @@ function makeRequest(callback) {
 
 
 
-
-
-// Función que hace la primera petición GET
-function getRequest1() {
-  return pm.sendRequest({
+// Hacer la primera petición GET
+function request1(callback) {
+  pm.sendRequest({
     url: 'https://api.example.com/request1',
     method: 'GET',
     header: headers
-  }).then((response) => {
-    return response.json();
-  }).catch((error) => {
-    console.error(error);
-    return null;
+  }, (err, res) => {
+    callback(null, res.json());
   });
 }
 
-// Función que hace la segunda petición POST
-function postRequest2(data) {
-  return pm.sendRequest({
+// Hacer la segunda petición POST
+function request2(data, callback) {
+  pm.sendRequest({
     url: 'https://api.example.com/request2',
     method: 'POST',
     header: headers,
@@ -141,17 +136,14 @@ function postRequest2(data) {
       mode: 'raw',
       raw: JSON.stringify(data)
     }
-  }).then((response) => {
-    return response.json();
-  }).catch((error) => {
-    console.error(error);
-    return null;
+  }, (err, res) => {
+    callback(null, res.json());
   });
 }
 
-// Función que hace la tercera petición POST
-function postRequest3(data) {
-  return pm.sendRequest({
+// Hacer la tercera petición POST
+function request3(data, callback) {
+  pm.sendRequest({
     url: 'https://api.example.com/request3',
     method: 'POST',
     header: headers,
@@ -159,10 +151,19 @@ function postRequest3(data) {
       mode: 'raw',
       raw: JSON.stringify(data)
     }
-  }).then((response) => {
-    return response.json();
-  }).catch((error) => {
-    console.error(error);
-    return null;
+  }, (err, res) => {
+    callback(null, res.json());
   });
 }
+
+// Ejecutar las peticiones en serie
+async.series([
+  request1,
+  request2,
+  request3
+], (err, results) => {
+  console.log(results);
+});
+
+
+
