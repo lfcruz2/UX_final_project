@@ -116,3 +116,34 @@ function makeRequest(callback) {
 makeRequest(function() {
     console.log('La API ha respondido correctamente');
 });
+
+
+
+// Función principal que ejecuta las tres peticiones de manera asíncrona
+function executeRequests() {
+  // Hacer la primera petición
+  getRequest1().then((response1) => {
+    if (!response1) {
+      console.error('Error en la petición 1');
+      return;
+    }
+
+    // Hacer la segunda petición utilizando la respuesta de la primera
+    postRequest2(response1).then((response2) => {
+      if (!response2) {
+        console.error('Error en la petición 2');
+        return;
+      }
+
+      // Hacer la tercera petición utilizando la respuesta de la segunda
+      postRequest3(response2).then((response3) => {
+        if (!response3) {
+          console.error('Error en la petición 3');
+          return;
+        }
+
+        console.log(response3);
+      });
+    });
+  });
+}
