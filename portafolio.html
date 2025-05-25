@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LatinUX Studio - Portafolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            background: #ffd700;
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #333;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Project Section */
+        .project-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .project-info h3 {
+            margin-bottom: 1rem;
+        }
+
+        .project-stats {
+            background: #667eea;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat {
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Process Section */
+        .process {
+            background: #f8f9fa;
+        }
+
+        .process-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            border-left: 5px solid #667eea;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: absolute;
+            left: -22px;
+            top: 2rem;
+        }
+
+        .step-content h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .step-deliverables {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .deliverable {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Prototype Section */
+        .prototype-showcase {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .prototype-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .prototype-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .prototype-link {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .prototype-link:hover {
+            background: #5a6fd8;
+        }
+
+        /* Testing Results */
+        .testing-results {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .result-percentage {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-info h3 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .project-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 60px 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">LatinUX Studio</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#proyecto">Proyecto</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#prototipos">Prototipos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <h1>LatinUX Studio</h1>
+        <p>Especialistas en diseño centrado en el usuario para conectar el talento latinoamericano con oportunidades globales</p>
+        <a href="#proyecto" class="cta-button">Ver Nuestro Trabajo</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="equipo" class="section about">
+        <h2>Nuestro Equipo</h2>
+        <div class="team-member fade-in">
+            <div class="member-photo">LF</div>
+            <h3>Luis Felipe Cruz Ceballos</h3>
+            <p><strong>UX/UI Designer & Researcher</strong></p>
+            <p>Especialista en diseño centrado en el usuario con enfoque en investigación, prototipado y testing. Apasionado por crear experiencias digitales que resuelvan problemas reales del talento tecnológico latinoamericano.</p>
+            <div class="skills">
+                <span class="skill-tag">Design Thinking</span>
+                <span class="skill-tag">User Research</span>
+                <span class="skill-tag">Prototyping</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Usability Testing</span>
+                <span class="skill-tag">Information Architecture</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section id="proyecto" class="section">
+        <h2>Proyecto: Fábrica de Talentos</h2>
+        <div class="project-overview fade-in">
+            <div class="project-info">
+                <h3>Desafío</h3>
+                <p>Diseñar una aplicación centrada en la búsqueda de empleo remoto que conecte a profesionales tecnológicos latinoamericanos con oportunidades laborales en Estados Unidos y Canadá de forma ágil, personalizada y transparente.</p>
+                
+                <h3>Contexto</h3>
+                <p>El mercado laboral tech remoto ha crecido exponencialmente, pero los profesionales de LATAM enfrentan barreras como falta de transparencia salarial, procesos de selección desorganizados y plataformas que no entienden sus necesidades específicas.</p>
+
+                <h3>Mi Rol</h3>
+                <p>Como único miembro del equipo, lideré todo el proceso de design thinking: desde la investigación inicial y análisis competitivo hasta el desarrollo de prototipos y testing con usuarios.</p>
+            </div>
+            <div class="project-stats">
+                <div class="stat">
+                    <span class="stat-number">14</span>
+                    <span class="stat-label">Pantallas Diseñadas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Competidores Analizados</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Arquetipos de Usuario</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">Usuarios Testeados</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="proceso" class="section process">
+        <h2>Proceso de Diseño</h2>
+        <div class="process-timeline">
+            
+            <!-- Fase 1: Empatía -->
+            <div class="process-step fade-in">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Fase 1: Empatía - Identificación del Contexto</h4>
+                    <p>Investigación profunda del mercado, análisis competitivo y identificación de tendencias para comprender las necesidades reales de los usuarios.</p>
+                    
+                    <div class="step-deliverables">
+                        <div class="deliverable">
+                            <strong>Análisis Competitivo</strong>
+                            <p>5 plataformas analizadas: LinkedIn Jobs, Indeed, Upwork, Turing, Torre</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Análisis de Tendencias</strong>
+                            <p>10 tendencias clave en reclutamiento digital y trabajo remoto</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Análisis de Referentes</strong>
+                            <p>10 referentes inspiradores de diferentes industrias</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Hallazgos clave:</strong> Falta de transparencia salarial, procesos de selección desorganizados, necesidad de validación de habilidades técnicas y soft skills.</p>
+                </div>
+            </div>
+
+            <!-- Fase 2: Definición e Ideación -->
+            <div class="process-step fade-in">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Fase 2: Definición e Ideación - Soluciones Posibles</h4>
+                    <p>Creación de arquetipos de usuario, desarrollo del concepto visual y generación de ideas innovadoras para la plataforma.</p>
+                    
+                    <div class="step-deliverables">
+                        <div class="deliverable">
+                            <strong>Arquetipos (Personas)</strong>
+                            <p>3 perfiles: Sofía (Frontend Jr.), Carlos (Backend Freelance), Mariana (PM Senior)</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Moodboard</strong>
+                            <p>Paleta de colores, tipografía e iconografía inspirada en transparencia y profesionalismo</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Brainstorming</strong>
+                            <p>5 ideas innovadoras: IA Matching, Transparencia Total, Upskilling, Proceso Simplificado, Pagos Integrados</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Priorización</strong>
+                            <p>Matriz Impacto vs Esfuerzo - Transparencia Total seleccionada como Quick Win</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Decisión clave:</strong> Priorizar la transparencia total (salarios visibles, información completa) como diferenciador principal de la plataforma.</p>
+                </div>
+            </div>
+
+            <!-- Fase 3: Prototipado -->
+            <div class="process-step fade-in">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Fase 3: Prototipado - Práticas Simuladas</h4>
+                    <p>Desarrollo de prototipos interactivos que integran todos los hallazgos de las fases anteriores en una experiencia cohesiva.</p>
+                    
+                    <div class="step-deliverables">
+                        <div class="deliverable">
+                            <strong>14 Pantallas</strong>
+                            <p>Desde login hasta confirmación de postulación</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Sketches</strong>
+                            <p>Bocetos de cada funcionalidad con justificación basada en research</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Prototipo Interactivo</strong>
+                            <p>Implementación en Figma con flujos completos</p>
+                        </div>
+                        <div class="deliverable">
+                            <strong>Design System</strong>
+                            <p>Componentes reutilizables y guías de estilo</p>
+                        </div>
+                    </div>
+                    
+                    <p><strong>Enfoque:</strong> Cada pantalla responde directamente a las frustraciones identificadas en la fase de empatía, especialmente la transparencia salarial y la simplicidad del proceso.</p>
+                </div>
+            </div>
+
+            <!-- Fase 4: Testing -->
+            <div class="process-step fade-in">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Fase 4: Testing - Validación con Usuarios</h4>
+                    <p>Test de preferencia con usuarios reales del público objetivo para validar las decisiones de diseño.</p>
+                    
+                    <div class="testing-results">
+                        <h4>Resultados del Test de Preferencia</h4>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <span class="result-percentage">70%</span>
+                                <p>Prefirió prototipo con transparencia total</p>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-percentage">4.4/5</span>
+                                <p>Evaluación promedio del prototipo elegido</p>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-percentage">4.1/5</span>
+                                <p>Facilidad de uso promedio</p>
+                            </div>
+                        </div>
+                        <p><strong>Validación exitosa:</strong> Los usuarios confirmaron que la transparencia salarial es el factor más valorado, validando nuestra decisión de priorizarla como feature principal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prototypes Section -->
+    <section id="prototipos" class="section">
+        <h2>Prototipos Interactivos</h2>
+        
+        <div class="prototype-showcase fade-in">
+            <h3>Demostración del Prototipo</h3>
+            <p>Explora el flujo completo de la aplicación Fábrica de Talentos</p>
+            
+            <iframe 
+                class="prototype-iframe"
+                src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F0zHXR269L5Mfj99LRmIRNg%2FDISE%25C3%2591O-CENTRADO-EN-EL-USUARIO%3Fnode-id%3D1-121%26p%3Df%26t%3D4FtX9KKdlCABpyrw-1%26scaling%3Dmin-zoom%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D1%253A121"
+                allowfullscreen>
+            </iframe>
+            
+            <div class="prototype-links">
+                <a href="https://www.figma.com/design/0zHXR269L5Mfj99LRmIRNg/DISE%C3%91O-CENTRADO-EN-EL-USUARIO?node-id=1-121&t=R7TG3VIth0WL1SMw-1" target="_blank" class="prototype-link">
+                    Ver Diseños en Figma
+                </a>
+                <a href="https://www.figma.com/proto/0zHXR269L5Mfj99LRmIRNg/DISE%C3%91O-CENTRADO-EN-EL-USUARIO?node-id=1-121&p=f&t=4FtX9KKdlCABpyrw-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A121" target="_blank" class="prototype-link">
+                    Probar Prototipo Interactivo
+                </a>
+            </div>
+        </div>
+
+        <div class="fade-in">
+            <h3>Pantallas Destacadas</h3>
+            <div class="step-deliverables">
+                <div class="deliverable">
+                    <strong>Dashboard</strong>
+                    <p>Vista principal con ofertas recomendadas y progreso del usuario</p>
+                </div>
+                <div class="deliverable">
+                    <strong>Búsqueda de Empleos</strong>
+                    <p>Interfaz limpia con salarios transparentes desde el listado</p>
+                </div>
+                <div class="deliverable">
+                    <strong>Filtros Avanzados</strong>
+                    <p>Panel intuitivo para refinar búsquedas por criterios clave</p>
+                </div>
+                <div class="deliverable">
+                    <strong>Detalle de Oferta</strong>
+                    <p>Información completa con transparencia total de beneficios</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="contact-info">
+            <h3>LatinUX Studio</h3>
+            <p>Especializados en conectar talento latinoamericano con oportunidades globales</p>
+            <p><strong>Luis Felipe Cruz Ceballos</strong></p>
+            <p>UX/UI Designer & Researcher</p>
+            <p>📧 luisfecruz@example.com | 🌍 Bucaramanga, Colombia</p>
+        </div>
+        <p>&copy; 2025 LatinUX Studio. Diseñado con pasión para el talento tecnológico de LATAM.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Dynamic typing effect for hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            typeWriter(heroTitle, originalText, 80);
+        });
+    </script>
+</body>
+</html>
